@@ -6,7 +6,7 @@ import { signUpValidator } from '../middlewares/validators/user.validator.middle
 const router = express.Router();
 
 /** 사용자 회원가입 API **/
-router.post('/sign-up', signUpValidator, async (req, res, next) => {
+router.post('/signup', signUpValidator, async (req, res, next) => {
   try {
     const { username, password, nickname } = req.body;
     const isExistUser = await prisma.users.findFirst({

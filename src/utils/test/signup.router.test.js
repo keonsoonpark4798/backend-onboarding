@@ -23,7 +23,7 @@ const app = express();
 app.use(express.json());
 app.use(router);
 
-describe('POST /api/sign-up', () => {
+describe('POST /api/signup', () => {
   it('유저 회원가입', async () => {
     // Arrange: Mock database to simulate no user found
     prisma.users.findFirst.mockResolvedValue(null); // No user exists
@@ -35,7 +35,7 @@ describe('POST /api/sign-up', () => {
       authorityName: 'ROLE_USER',
     }); // Simulate user creation
 
-    const response = await request(app).post('/sign-up').send({
+    const response = await request(app).post('/signup').send({
       username: 'JIN HO',
       password: '12341234',
       nickname: 'Mentos',
@@ -48,7 +48,7 @@ describe('POST /api/sign-up', () => {
     expect(response.body.authorities).toEqual([{ authorityName: 'ROLE_USER' }]);
   });
 
-  it('존재하는 유저일떄 409에러 체크크', async () => {
+  it('존재하는 유저일떄 409에러 체크', async () => {
     const existingUser = {
       username: 'JIN HO',
       password: '12341234',
@@ -56,7 +56,7 @@ describe('POST /api/sign-up', () => {
     };
     prisma.users.findFirst.mockResolvedValue(existingUser);
 
-    const response = await request(app).post('/sign-up').send({
+    const response = await request(app).post('/signup').send({
       username: 'JIN HO',
       password: '12341234',
       nickname: 'Mentos',
@@ -67,7 +67,7 @@ describe('POST /api/sign-up', () => {
   });
 
   it('이름 없을때 400에러 체크', async () => {
-    const response = await request(app).post('/sign-up').send({
+    const response = await request(app).post('/signup').send({
       username: '',
       password: '12341234',
       nickname: 'Mentos',
