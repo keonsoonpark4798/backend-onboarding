@@ -1,0 +1,104 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "backend-onboarding-NodeJS",
+    "description": " nodeJs 백엔드 온보딩 과제 "
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": ""
+    }
+  ],
+  "tags": [
+    {
+      "name": "Users",
+      "description": "유저 관련 API"
+    }
+  ],
+  "paths": {
+    "/api/signup": {
+      "post": {
+        "summary": "회원가입",
+        "tags": ["Users"],
+        "description": "username, 비밀번호, 닉네임을을 입력받아 회원가입하는 API",
+        "responses": {
+          "201": {
+            "description": "회원가입이 완료되었습니다."
+          },
+          "400": {
+            "description": "양식 에러"
+          },
+          "409": {
+            "description": "이미 존재하는 유저입니다."
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "example": "JIN HO"
+                  },
+                  "password": {
+                    "example": "12341234"
+                  },
+                  "nickname": {
+                    "example": "Mentos"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/login": {
+      "post": {
+        "summary": "로그인",
+        "tags": ["Users"],
+        "description": "username과과 비밀번호를 입력받아 검증후 로그인하는 API",
+        "responses": {
+          "200": {
+            "description": "로그인 성공"
+          },
+          "401": {
+            "description": "양식 에러"
+          },
+          "404": {
+            "description": "존재하지 않는 유저이름입니다. \n\n 비밀번호가 일치하지 않습니다."
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "example": "JIN HO"
+                  },
+                  "password": {
+                    "example": "12341234"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "Authorization"
+      }
+    }
+  }
+}
