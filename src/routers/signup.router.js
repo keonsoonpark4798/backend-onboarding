@@ -27,7 +27,7 @@ router.post('/signup', signUpValidator, async (req, res, next) => {
         username,
         password: hashedPassword,
         nickname,
-        authorityName: 'ROLE_USER',
+        authorityname: 'ROLE_USER',
       },
     });
 
