@@ -1,7 +1,6 @@
 import express from 'express';
 import { prisma } from '../utils/prisma/index.js';
 import bcrypt from 'bcrypt';
-import { Prisma } from '@prisma/client';
 import { signUpValidator } from '../middlewares/validators/user.validator.middleware.js';
 
 const router = express.Router();
