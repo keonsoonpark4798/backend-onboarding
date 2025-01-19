@@ -8,7 +8,7 @@ const doc = {
   },
   servers: [
     {
-      url: 'http://localhost:3000',
+      url: 'http://parkawstest.shop:3000',
       description: '',
     },
     // { ... }
